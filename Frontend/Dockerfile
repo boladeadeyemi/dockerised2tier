@@ -25,7 +25,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Optionally, use a custom nginx.conf
-# COPY nginx.conf /etc/nginx/nginx.conf  <-- Only if you're supplying this
+COPY nginx.conf /etc/nginx/nginx.conf  
 
 EXPOSE 80
 
