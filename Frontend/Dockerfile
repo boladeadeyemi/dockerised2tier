@@ -22,10 +22,10 @@ FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy build output to NGINX directory
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Optionally, use a custom nginx.conf
-COPY nginx.conf /etc/nginx/nginx.conf  
+COPY nginx.conf /etc/nginx/conf.d/default.conf 
 
 EXPOSE 80
 
