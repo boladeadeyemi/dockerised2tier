@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./Backend
+    image: bgin86/backend:latest
+    ports:
+      - "5000:5000" # Optional if you're accessing directly; not needed if only through NGINX
+    networks:
+      - app-network
+
+  nginx:
+  image: nginx:alpine
+  volumes:
+    - ./Frontend/build:/usr/share/nginx/html
+    - ./Frontend/default.conf:/etc/nginx/conf.d/default.conf
+  ports:
+    - "80:80"
+  depends_on:
+    - backend
+  networks:
+    - app-network
+
+networks:
+  app-network:
+    driver: bridge
